@@ -1,0 +1,20 @@
+{
+  "name": "telegram-bot-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index.js localhost 8080"
+  },
+  "dependencies": {
+    "date-fns": "2.6.0",
+    "fs-extra": "8.1.0",
+    "lodash": "4.17.15",
+    "plural-ru": "2.0.1",
+    "telegraf": "3.33.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.4"
+  },
+  "keywords": []
+}
