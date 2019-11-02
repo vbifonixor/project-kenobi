@@ -4,5 +4,5 @@ module.exports = {
   type: "group",
   commands: [require("./register"), require("./go"), require("./stats")],
   description: "Gay of the day game",
-  chats: [chats.ME, chats.TEST_SUITE]
+  chats: [chats.ME, chats.TEST_SUITE, chats.KPOB]
 };
