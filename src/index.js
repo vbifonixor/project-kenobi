@@ -3,6 +3,7 @@ const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 const commands = require("./commands");
+const allChats = require('../config/chats.json');
 
 const help = commands => ({ chat: { id }, reply }) => {
   let message = "*Commands for this bot:* \n";
@@ -27,7 +28,7 @@ const help = commands => ({ chat: { id }, reply }) => {
 };
 
 const checkCommand = chats => (ctx, next) => {
-  if (chats.includes(ctx.chat.id)) {
+  if (chats.includes(ctx.chat.id) || chats.includes(allChats.ALL)) {
     next();
   }
 };
