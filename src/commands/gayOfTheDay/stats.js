@@ -26,6 +26,6 @@ module.exports = {
       )}\n`;
     });
 
-    setTimeout(() => ctx.reply(message), 3000);
+    setTimeout(() => ctx.reply(message), 2000);
   }
 };

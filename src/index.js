@@ -9,7 +9,7 @@ const help = commands => ({ chat: { id }, reply }) => {
   let message = "*Commands for this bot:* \n";
 
   commands
-    .filter(({ chats }) => chats.includes(id))
+    .filter(({ chats }) => chats.includes(id) || chats.includes(allChats.ALL))
     .forEach(command => {
       const introduceCommand = cmd => `/${cmd.name} — ${cmd.description}\n`;
 
