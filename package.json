@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start:dev": "nodemon src/index.js localhost 8080",
-    "start:prod": "node src/index.js localhost 8080"
+    "start:prod": "node src/index.js localhost 8080",
+    "build": "docker build -t vbifonix/project-kenobi:latest . && docker push vbifonix/project-kenobi:latest"
   },
   "dependencies": {
     "date-fns": "2.6.0",

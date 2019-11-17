@@ -5,13 +5,13 @@ const _isEmpty = require("lodash/isEmpty");
 const differenceInCalendarDays = require("date-fns/differenceInCalendarDays");
 const parseISO = require("date-fns/parseISO");
 
-const path = "src/commands/gayOfTheDay/data.bank";
+const { DATA_BANK_PATH } = require('./constants');
 
 module.exports = {
   name: "gotd",
   description: "Крутим барабан",
   middleware: ctx => {
-    const data = fse.readJSONSync(path) || {};
+    const data = fse.readJSONSync(DATA_BANK_PATH) || {};
     const chatData = data[ctx.chat.id] || {};
 
     const { lastPlayed, lastWinner } = chatData;
@@ -26,7 +26,7 @@ module.exports = {
     if (differenceInCalendarDays(new Date(), parseISO(lastPlayed)) < 1) {
       ctx.reply(
         `Извини, @${
-          ctx.from.username
+        ctx.from.username
         }, придётся подождать до завтра. Сегодняшний пидор дня уже ${lastWinner}`
       );
       return;
@@ -34,7 +34,7 @@ module.exports = {
 
     const potd =
       chatData.registered[
-        Math.floor(Math.random() * (chatData.registered || []).length)
+      Math.floor(Math.random() * (chatData.registered || []).length)
       ];
 
     const newData = {
@@ -50,7 +50,7 @@ module.exports = {
       }
     };
 
-    fse.outputJSONSync(path, newData);
+    fse.outputJSONSync(DATA_BANK_PATH, newData);
 
     ctx.reply(`Пидор дня сегодня - @${potd}`);
   }
