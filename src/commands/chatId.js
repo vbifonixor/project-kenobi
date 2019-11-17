@@ -1,4 +1,6 @@
-const chats = require("../../config/chats.json");
+const readBank = require('./utils/databank');
+
+const { chats } = readBank('meta');
 
 module.exports = {
   chats: [chats.ALL],

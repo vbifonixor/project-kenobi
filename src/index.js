@@ -3,7 +3,9 @@ const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 const commands = require("./commands");
-const allChats = require('../config/chats.json');
+const readBank = require('./utils/databank');
+
+const { chats: allChats } = readBank('meta');
 
 const help = commands => ({ chat: { id }, reply }) => {
   let message = "*Commands for this bot:* \n";

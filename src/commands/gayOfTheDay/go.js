@@ -1,17 +1,16 @@
-const fse = require("fs-extra");
-
 const _get = require("lodash/get");
 const _isEmpty = require("lodash/isEmpty");
 const differenceInCalendarDays = require("date-fns/differenceInCalendarDays");
 const parseISO = require("date-fns/parseISO");
 
-const { DATA_BANK_PATH } = require('./constants');
+const { readBank, writeBank } = require('../../utils/databank');
+const { NAMESPACE } = require('./constants');
 
 module.exports = {
   name: "gotd",
   description: "Крутим барабан",
   middleware: ctx => {
-    const data = fse.readJSONSync(DATA_BANK_PATH) || {};
+    const data = readBank(NAMESPACE);
     const chatData = data[ctx.chat.id] || {};
 
     const { lastPlayed, lastWinner } = chatData;
@@ -50,7 +49,7 @@ module.exports = {
       }
     };
 
-    fse.outputJSONSync(DATA_BANK_PATH, newData);
+    writeBank(NAMESPACE, newData);
 
     ctx.reply(`Пидор дня сегодня - @${potd}`);
   }

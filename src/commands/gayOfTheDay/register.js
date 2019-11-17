@@ -1,6 +1,5 @@
-const fse = require("fs-extra");
-
-const { DATA_BANK_PATH } = require('./constants');
+const { readBank, writeBank } = require('../../utils/databank');
+const { NAMESPACE } = require('./constants');
 
 module.exports = {
   name: "gotdreg",
@@ -8,7 +7,7 @@ module.exports = {
   middleware: ctx => {
     const { username } = ctx.from;
 
-    const data = fse.readJSONSync(DATA_BANK_PATH) || {};
+    const data = readBank(NAMESPACE);
     const chatData = data[ctx.chat.id] || {};
 
     const newData = {
@@ -22,7 +21,7 @@ module.exports = {
       }
     };
 
-    fse.outputJSONSync(DATA_BANK_PATH, newData);
+    writeBank(NAMESPACE, newData);
 
     ctx.reply(`@${ctx.from.username} успешно зарегистрирован!`);
   }

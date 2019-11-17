@@ -1,14 +1,14 @@
-const fse = require("fs-extra");
-
 const plural = require("plural-ru");
 
-const { DATA_BANK_PATH } = require('./constants');
+const { readBank } = require('../../utils/databank');
+
+const { NAMESPACE } = require('./constants');
 
 module.exports = {
   name: "gotdstats",
   description: "Статистика игры",
   middleware: ctx => {
-    const data = fse.readJSONSync(DATA_BANK_PATH) || {};
+    const data = readBank(NAMESPACE);
     const chatData = data[ctx.chat.id] || {};
 
     if (!chatData.stats) {
