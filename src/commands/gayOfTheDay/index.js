@@ -1,4 +1,4 @@
-const readBank = require('./utils/databank');
+const readBank = require('../../utils/databank');
 
 const { chats } = readBank('meta');
 
