@@ -1,5 +1,6 @@
 module.exports = [
   require("./betterHelloWorld"),
   require("./chatId"),
-  require("./gayOfTheDay")
+  require("./gayOfTheDay"),
+  require('./wildFarWestCounter'),
 ];
